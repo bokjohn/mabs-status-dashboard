@@ -1,1 +1,86 @@
-{"agents":[],"businesses":[],"awaitingSean":[],"alerts":[]}
+{
+  "lastUpdated": "2026-02-28T22:29:12.474Z",
+  "agents": [
+    {
+      "id": "BPW",
+      "name": "Business Plan Writer",
+      "status": "stalled",
+      "load": "critical"
+    },
+    {
+      "id": "BLD",
+      "name": "Builder",
+      "status": "active",
+      "load": "medium"
+    },
+    {
+      "id": "QA",
+      "name": "Quality Assurance",
+      "status": "active",
+      "load": "unknown"
+    },
+    {
+      "id": "MKT",
+      "name": "Marketing",
+      "status": "waiting",
+      "load": "low"
+    },
+    {
+      "id": "BIR",
+      "name": "Business Intelligence",
+      "status": "active",
+      "load": "high"
+    },
+    {
+      "id": "TA",
+      "name": "Technical Architect",
+      "status": "active",
+      "load": "medium"
+    }
+  ],
+  "businesses": [
+    {
+      "name": "Crypto AI Influencer",
+      "status": "stalled",
+      "phase": "Planning (Gate 2)",
+      "owner": "BPW"
+    },
+    {
+      "name": "POD Business (Pawfect)",
+      "status": "ready",
+      "phase": "Launch prep",
+      "owner": "BLD/MKT"
+    },
+    {
+      "name": "CRA (Creative Agent)",
+      "status": "active",
+      "phase": "Build",
+      "owner": "BLD"
+    }
+  ],
+  "awaitingSean": [
+    "Twitter credentials - MKT blocked",
+    "POD credentials - Printify + Etsy",
+    "OpenClaw Phase 1A - $500 budget approval"
+  ],
+  "alerts": [
+    {
+      "type": "critical",
+      "message": "BPW stalled 11+ hours"
+    },
+    {
+      "type": "warning",
+      "message": "BIR autonomy report overdue"
+    },
+    {
+      "type": "info",
+      "message": "Commitment system built (BLD)"
+    }
+  ],
+  "stats": {
+    "activeProjects": 3,
+    "activeAgents": 6,
+    "blockers": 3,
+    "completedToday": 4
+  }
+}
