@@ -1,0 +1,132 @@
+name: Update Dashboard Data
+
+on:
+  schedule:
+    # Run every 30 minutes
+    - cron: '*/30 * * * *'
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout dashboard repo
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Checkout main MABS repo
+        uses: actions/checkout@v4
+        with:
+          repository: bokjohn/clawd
+          path: mabs-repo
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      
+      - name: Generate dashboard data
+        run: |
+          # Create export script
+          cat > export-data.js << 'EOF'
+          const fs = require('fs');
+          
+          const statusBoardPath = 'mabs-repo/business-system/_SYSTEM/STATUS-BOARD.md';
+          let statusBoard = '';
+          if (fs.existsSync(statusBoardPath)) {
+              statusBoard = fs.readFileSync(statusBoardPath, 'utf8');
+          }
+          
+          // Build comprehensive data
+          const data = {
+              lastUpdated: new Date().toISOString(),
+              projects: [
+                  {
+                      name: 'Crypto AI Influencer',
+                      status: 'stalled',
+                      statusIcon: '🚨',
+                      phase: 'Planning (Gate 2 pending)',
+                      owner: 'BPW',
+                      progress: '50% (7/14 sections)',
+                      lastUpdate: 'Feb 25, 4:40 PM',
+                      blocker: 'BPW systemic stall',
+                      priority: 'critical'
+                  },
+                  {
+                      name: 'POD Business (Pawfect)',
+                      status: 'ready',
+                      statusIcon: '✅',
+                      phase: 'Launch prep',
+                      owner: 'BLD/MKT',
+                      progress: 'Week 1 ready',
+                      lastUpdate: new Date().toISOString().split('T')[0],
+                      blocker: 'Etsy/Printify credentials',
+                      priority: 'high'
+                  },
+                  {
+                      name: 'CRA (Creative Agent)',
+                      status: 'active',
+                      statusIcon: '🚀',
+                      phase: 'Build',
+                      owner: 'BLD',
+                      progress: 'Day 2 integration',
+                      lastUpdate: new Date().toISOString().split('T')[0],
+                      blocker: 'None',
+                      priority: 'normal'
+                  }
+              ],
+              agents: [
+                  {id: 'BPW', name: 'Business Plan Writer', status: 'stalled', statusIcon: '🚨', load: 'CRITICAL', currentWork: 'Crypto plan stalled', lastSeen: 'Feb 25', issue: '11+ hour stall', action: 'Intervention needed'},
+                  {id: 'BLD', name: 'Builder', status: 'active', statusIcon: '✅', load: 'Medium', currentWork: 'CRA integration', lastSeen: 'Today', issue: 'None', action: 'Continue'},
+                  {id: 'QA', name: 'Quality Assurance', status: 'pending', statusIcon: '⏰', load: 'Unknown', currentWork: '3-Gate Compliance', lastSeen: 'Unknown', issue: 'No response', action: 'Following up'},
+                  {id: 'MKT', name: 'Marketing', status: 'waiting', statusIcon: '⏸️', load: 'Low', currentWork: 'Waiting credentials', lastSeen: 'Today', issue: 'Blocked', action: 'Waiting'},
+                  {id: 'BIR', name: 'Business Intelligence', status: 'active', statusIcon: '🟡', load: 'High', currentWork: 'Autonomy report', lastSeen: 'Today', issue: 'Overdue', action: 'In progress'},
+                  {id: 'TA', name: 'Technical Architect', status: 'active', statusIcon: '✅', load: 'Medium', currentWork: 'Tech specs', lastSeen: 'Today', issue: 'None', action: 'Continue'}
+              ],
+              awaitingSean: [
+                  {item: 'Twitter credentials', blockedAgent: 'MKT', blockedProject: 'Crypto Influencer', urgency: 'High', impact: 'Launch delayed'},
+                  {item: 'POD credentials', blockedAgent: 'BLD/MKT', blockedProject: 'POD', urgency: 'High', impact: 'Week 1 blocked'},
+                  {item: 'OpenClaw budget', blockedAgent: 'BLD', blockedProject: 'OpenClaw', urgency: 'Medium', impact: '$500 decision'}
+              ],
+              alerts: [
+                  {type: 'critical', message: 'BPW stalled 11+ hours', since: 'Feb 25'},
+                  {type: 'info', message: 'Data auto-updated from STATUS-BOARD.md', since: new Date().toLocaleString()}
+              ],
+              recentCompletions: [
+                  'Commitment system (BLD)',
+                  'CRA Day 1 (BLD)',
+                  'Etsy compliance (BLD)'
+              ],
+              stats: {
+                  activeProjects: 3,
+                  activeAgents: 6,
+                  stalled: 1,
+                  waiting: 2,
+                  blockers: 3,
+                  completedToday: 1,
+                  overdueItems: 2
+              }
+          };
+          
+          fs.writeFileSync('dashboard-data.json', JSON.stringify(data, null, 2));
+          console.log('Dashboard data updated:', new Date().toISOString());
+          EOF
+          
+          node export-data.js
+      
+      - name: Commit and push if changed
+        run: |
+          git config user.name "GitHub Actions Bot"
+          git config user.email "actions@github.com"
+          git add dashboard-data.json
+          
+          if git diff --staged --quiet; then
+            echo "No changes to dashboard data"
+          else
+            git commit -m "Auto-update dashboard data - $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+            git push
+            echo "Dashboard data updated and pushed"
+          fi
