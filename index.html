@@ -21,209 +21,215 @@
         }
         
         .header {
-            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            text-align: center;
+            margin-bottom: 24px;
             padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             border-radius: 12px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
         }
         
         .header h1 {
-            font-size: 24px;
+            font-size: 28px;
             margin-bottom: 8px;
         }
         
-        .header .status {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 14px;
+        .last-updated {
             opacity: 0.9;
+            font-size: 14px;
         }
         
-        .status-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 4px 12px;
-            background: rgba(255,255,255,0.2);
-            border-radius: 20px;
-            font-weight: 500;
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+        
+        .stat-card {
+            background: #1a1a1a;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #333;
+        }
+        
+        .stat-value {
+            font-size: 32px;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 8px;
+        }
+        
+        .stat-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            opacity: 0.7;
+            letter-spacing: 1px;
         }
         
         .section {
+            margin-bottom: 24px;
             background: #1a1a1a;
-            border-radius: 12px;
             padding: 20px;
-            margin-bottom: 16px;
-            border: 1px solid #2a2a2a;
+            border-radius: 12px;
+            border: 1px solid #333;
         }
         
-        .section-title {
-            font-size: 18px;
-            font-weight: 600;
+        .section h2 {
             margin-bottom: 16px;
-            color: #60a5fa;
+            font-size: 20px;
+            color: #667eea;
         }
         
-        .agent-item, .business-item, .metric-item {
-            padding: 12px;
-            margin: 8px 0;
-            background: #252525;
+        .alert {
+            padding: 12px 16px;
             border-radius: 8px;
-            border-left: 4px solid;
+            margin-bottom: 8px;
+            font-size: 14px;
         }
         
-        .agent-item.active { border-color: #10b981; }
-        .agent-item.idle { border-color: #f59e0b; }
-        .agent-item.stalled { border-color: #ef4444; }
+        .alert-critical {
+            background: #ff4444;
+            color: white;
+        }
+        
+        .alert-warning {
+            background: #ffaa00;
+            color: #000;
+        }
+        
+        .alert-info {
+            background: #4444ff;
+            color: white;
+        }
+        
+        .agents-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 12px;
+        }
+        
+        .agent-card {
+            background: #222;
+            padding: 16px;
+            border-radius: 8px;
+            border: 1px solid #444;
+        }
         
         .agent-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 4px;
+            margin-bottom: 8px;
         }
         
-        .agent-name {
-            font-weight: 600;
-            font-size: 16px;
+        .agent-id {
+            font-weight: bold;
+            font-size: 18px;
+            color: #667eea;
         }
         
         .agent-status {
+            font-size: 20px;
+        }
+        
+        .agent-name {
+            font-size: 13px;
+            opacity: 0.8;
+            margin-bottom: 8px;
+        }
+        
+        .agent-load {
+            font-size: 12px;
+            padding: 4px 8px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+        
+        .load-critical { background: #ff4444; color: white; }
+        .load-high { background: #ffaa00; color: #000; }
+        .load-medium { background: #4444ff; color: white; }
+        .load-low { background: #44ff44; color: #000; }
+        
+        .business-card {
+            background: #222;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            border: 1px solid #444;
+        }
+        
+        .business-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        
+        .business-header h3 {
+            font-size: 16px;
+            color: #e0e0e0;
+        }
+        
+        .business-status {
+            font-size: 14px;
+            padding: 4px 12px;
+            border-radius: 4px;
+            background: #333;
+        }
+        
+        .business-details {
             font-size: 13px;
             opacity: 0.8;
         }
         
-        .agent-work {
-            font-size: 14px;
-            opacity: 0.7;
-            margin-top: 4px;
-        }
-        
-        .progress-bar {
-            background: #2a2a2a;
-            height: 8px;
-            border-radius: 4px;
-            overflow: hidden;
-            margin: 8px 0;
-        }
-        
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #3b82f6, #60a5fa);
-            transition: width 0.3s;
-        }
-        
-        .metric-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-        }
-        
-        .metric-card {
-            background: #252525;
-            padding: 16px;
-            border-radius: 8px;
-            text-align: center;
-        }
-        
-        .metric-value {
-            font-size: 32px;
-            font-weight: 700;
-            margin: 8px 0;
-        }
-        
-        .metric-label {
-            font-size: 12px;
-            opacity: 0.7;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        
-        .metric-good { color: #10b981; }
-        .metric-warn { color: #f59e0b; }
-        .metric-bad { color: #ef4444; }
-        
-        .alert {
-            background: rgba(239, 68, 68, 0.1);
-            border: 1px solid #ef4444;
-            border-radius: 8px;
-            padding: 12px;
-            margin: 8px 0;
-        }
-        
-        .alert-title {
-            font-weight: 600;
+        .business-details div {
             margin-bottom: 4px;
         }
         
-        .awaiting-item {
-            background: rgba(251, 191, 36, 0.1);
-            border-left: 4px solid #f59e0b;
-            padding: 12px;
-            margin: 8px 0;
-            border-radius: 4px;
+        .awaiting-list {
+            list-style: none;
+            padding: 0;
         }
         
-        .refresh-time {
-            text-align: center;
-            font-size: 12px;
-            opacity: 0.5;
-            margin-top: 20px;
+        .awaiting-list li {
+            padding: 12px;
+            background: #222;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            border-left: 4px solid #ffaa00;
         }
         
         @media (max-width: 600px) {
-            body { padding: 12px; }
-            .header h1 { font-size: 20px; }
-            .metric-grid { grid-template-columns: 1fr; }
+            body {
+                padding: 12px;
+            }
+            
+            .header h1 {
+                font-size: 24px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .agents-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>🤖 MABS Dashboard</h1>
-        <div class="status">
-            <span class="status-badge" id="systemStatus">
-                <span id="statusDot">●</span>
-                <span id="statusText">Loading...</span>
-            </span>
-            <span id="lastUpdate">Initializing...</span>
+    <div id="dashboard">
+        <div class="header">
+            <h1>MABS Dashboard</h1>
+            <p class="last-updated">Loading...</p>
+        </div>
+        <div class="section">
+            <p style="text-align: center;">Loading dashboard data...</p>
         </div>
     </div>
-
-    <!-- Agent Status -->
-    <div class="section">
-        <div class="section-title">👥 Agent Status</div>
-        <div id="agentStatus">Loading agents...</div>
-    </div>
-
-    <!-- Business Progress -->
-    <div class="section">
-        <div class="section-title">📊 Business Portfolio</div>
-        <div id="businessProgress">Loading businesses...</div>
-    </div>
-
-    <!-- Key Metrics -->
-    <div class="section">
-        <div class="section-title">📈 System Metrics</div>
-        <div class="metric-grid" id="metrics">Loading metrics...</div>
-    </div>
-
-    <!-- Alerts & Blockers -->
-    <div class="section">
-        <div class="section-title">⚠️ Alerts & Blockers</div>
-        <div id="alerts">Loading alerts...</div>
-    </div>
-
-    <!-- Awaiting Sean -->
-    <div class="section">
-        <div class="section-title">🔔 Awaiting Sean</div>
-        <div id="awaitingSean">Loading items...</div>
-    </div>
-
-    <div class="refresh-time" id="refreshTime">Auto-refresh every 30 seconds</div>
-
-    <script src="dashboard.js"></script>
+    
+    <script src="dashboard.js?v=2"></script>
 </body>
 </html>
