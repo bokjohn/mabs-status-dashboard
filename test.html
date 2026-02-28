@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MABS Dashboard TEST</title>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <style>
+        body { font-family: sans-serif; padding: 20px; background: #000; color: #fff; }
+        .status { padding: 10px; margin: 10px 0; border-radius: 5px; }
+        .success { background: #2d5; }
+        .error { background: #d25; }
+        pre { background: #222; padding: 15px; border-radius: 5px; overflow-x: auto; }
+    </style>
+</head>
+<body>
+    <h1>MABS Dashboard Test Page</h1>
+    <div id="status">Loading...</div>
+    <div id="data"></div>
+    
+    <script>
+        const timestamp = new Date().getTime();
+        const statusDiv = document.getElementById('status');
+        const dataDiv = document.getElementById('data');
+        
+        fetch(`dashboard-data.json?t=${timestamp}`)
+            .then(res => {
+                if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                return res.json();
+            })
+            .then(data => {
+                statusDiv.className = 'status success';
+                statusDiv.innerHTML = `✅ Data loaded successfully! (${new Date().toLocaleTimeString()})`;
+                
+                dataDiv.innerHTML = `
+                    <h2>Data Summary:</h2>
+                    <p><strong>Agents:</strong> ${data.agents ? data.agents.length : 0}</p>
+                    <p><strong>Businesses:</strong> ${data.businesses ? data.businesses.length : 0}</p>
+                    <p><strong>Alerts:</strong> ${data.alerts ? data.alerts.length : 0}</p>
+                    
+                    <h3>Agents:</h3>
+                    ${data.agents ? data.agents.map(a => 
+                        `<div style="background:#222;padding:10px;margin:5px 0;border-radius:5px;">
+                            <strong>${a.id}</strong> - ${a.name}<br>
+                            Status: ${a.status} | Load: ${a.load}
+                        </div>`
+                    ).join('') : 'No agents'}
+                    
+                    <h3>Raw Data:</h3>
+                    <pre>${JSON.stringify(data, null, 2)}</pre>
+                `;
+            })
+            .catch(err => {
+                statusDiv.className = 'status error';
+                statusDiv.innerHTML = `❌ Error: ${err.message}`;
+                dataDiv.innerHTML = `<pre>${err.stack}</pre>`;
+            });
+    </script>
+</body>
+</html>
