@@ -1,86 +1,177 @@
 {
-  "lastUpdated": "2026-02-28T22:29:12.474Z",
+  "lastUpdated": "2026-02-28T22:53:14.860Z",
+  "projects": [
+    {
+      "name": "Crypto AI Influencer",
+      "status": "stalled",
+      "statusIcon": "🚨",
+      "phase": "Planning (Gate 2 pending)",
+      "owner": "BPW",
+      "progress": "50% (7/14 sections)",
+      "lastUpdate": "Feb 25, 4:40 PM (11+ hours ago)",
+      "blocker": "BPW systemic stall - no progress",
+      "priority": "critical"
+    },
+    {
+      "name": "POD Business (Pawfect)",
+      "status": "ready",
+      "statusIcon": "✅",
+      "phase": "Launch prep - Week 1 ready",
+      "owner": "BLD/MKT",
+      "progress": "Ready to launch",
+      "lastUpdate": "Today",
+      "blocker": "Waiting for Etsy/Printify credentials from Sean",
+      "priority": "high"
+    },
+    {
+      "name": "CRA (Creative Agent)",
+      "status": "active",
+      "statusIcon": "🚀",
+      "phase": "Build - Day 2 integration",
+      "owner": "BLD",
+      "progress": "Day 1 complete, Day 2 in progress",
+      "lastUpdate": "Today - Feb 28",
+      "blocker": "None",
+      "priority": "normal"
+    },
+    {
+      "name": "Commitment Tracking System",
+      "status": "complete",
+      "statusIcon": "✅",
+      "phase": "Built and tested",
+      "owner": "BLD",
+      "progress": "100% - Production ready",
+      "lastUpdate": "Today - Feb 28, 1:15 PM",
+      "blocker": "None (waiting OA integration)",
+      "priority": "normal"
+    }
+  ],
   "agents": [
     {
       "id": "BPW",
       "name": "Business Plan Writer",
       "status": "stalled",
-      "load": "critical"
+      "statusIcon": "🚨",
+      "load": "CRITICAL FAILURE",
+      "currentWork": "Crypto Influencer plan stalled at Section 7",
+      "lastSeen": "Feb 25, 4:40 PM",
+      "issue": "11+ hour work stoppage, multiple escalations ignored",
+      "action": "EMERGENCY intervention required"
     },
     {
       "id": "BLD",
       "name": "Builder",
       "status": "active",
-      "load": "medium"
+      "statusIcon": "✅",
+      "load": "Medium",
+      "currentWork": "Commitment system complete, CRA Day 2 next",
+      "lastSeen": "Today - Feb 28",
+      "issue": "None",
+      "action": "Continue CRA integration"
     },
     {
       "id": "QA",
       "name": "Quality Assurance",
-      "status": "active",
-      "load": "unknown"
+      "status": "pending",
+      "statusIcon": "⏰",
+      "load": "Unknown",
+      "currentWork": "3-Gate Compliance (overdue)",
+      "lastSeen": "Unknown",
+      "issue": "No response to check-ins",
+      "action": "OA following up"
     },
     {
       "id": "MKT",
       "name": "Marketing",
       "status": "waiting",
-      "load": "low"
+      "statusIcon": "⏸️",
+      "load": "Low",
+      "currentWork": "Waiting for credentials",
+      "lastSeen": "Today",
+      "issue": "Blocked on Twitter + POD credentials",
+      "action": "Waiting for Sean"
     },
     {
       "id": "BIR",
       "name": "Business Intelligence",
       "status": "active",
-      "load": "high"
+      "statusIcon": "🟡",
+      "load": "High",
+      "currentWork": "Autonomy report (80% research, 40% writing)",
+      "lastSeen": "Today",
+      "issue": "Missed 2 AM deadline, underestimated synthesis time",
+      "action": "Honest acknowledgment, offered solutions"
     },
     {
       "id": "TA",
       "name": "Technical Architect",
       "status": "active",
-      "load": "medium"
-    }
-  ],
-  "businesses": [
-    {
-      "name": "Crypto AI Influencer",
-      "status": "stalled",
-      "phase": "Planning (Gate 2)",
-      "owner": "BPW"
-    },
-    {
-      "name": "POD Business (Pawfect)",
-      "status": "ready",
-      "phase": "Launch prep",
-      "owner": "BLD/MKT"
-    },
-    {
-      "name": "CRA (Creative Agent)",
-      "status": "active",
-      "phase": "Build",
-      "owner": "BLD"
+      "statusIcon": "✅",
+      "load": "Medium",
+      "currentWork": "Various technical specs",
+      "lastSeen": "Today",
+      "issue": "None",
+      "action": "Continue work"
     }
   ],
   "awaitingSean": [
-    "Twitter credentials - MKT blocked",
-    "POD credentials - Printify + Etsy",
-    "OpenClaw Phase 1A - $500 budget approval"
+    {
+      "item": "Twitter credentials",
+      "blockedAgent": "MKT",
+      "blockedProject": "Crypto AI Influencer",
+      "urgency": "High",
+      "impact": "Launch delayed"
+    },
+    {
+      "item": "POD credentials (Printify + Etsy)",
+      "blockedAgent": "BLD/MKT",
+      "blockedProject": "POD Business",
+      "urgency": "High",
+      "impact": "Week 1 launch blocked"
+    },
+    {
+      "item": "OpenClaw Phase 1A budget approval",
+      "blockedAgent": "BLD",
+      "blockedProject": "OpenClaw",
+      "urgency": "Medium",
+      "impact": "$500 budget decision needed"
+    }
   ],
   "alerts": [
     {
       "type": "critical",
-      "message": "BPW stalled 11+ hours"
+      "message": "BPW stalled 11+ hours - emergency intervention needed",
+      "since": "Feb 25, 4:40 PM"
     },
     {
       "type": "warning",
-      "message": "BIR autonomy report overdue"
+      "message": "BIR autonomy report overdue (missed 2 AM deadline)",
+      "since": "Feb 28, 2:00 AM"
+    },
+    {
+      "type": "success",
+      "message": "Commitment tracking system built and tested (BLD)",
+      "since": "Feb 28, 1:15 PM"
     },
     {
       "type": "info",
-      "message": "Commitment system built (BLD)"
+      "message": "3 items awaiting Sean action (credentials + budget)",
+      "since": "Ongoing"
     }
   ],
+  "recentCompletions": [
+    "BLD: Commitment system (all 3 phases) - Feb 28, 1:15 PM",
+    "BLD: CRA Day 1 foundation - Feb 27",
+    "BLD: Etsy compliance - Feb 27",
+    "BPW: Section 6 (Devil's Advocate) - Feb 25"
+  ],
   "stats": {
-    "activeProjects": 3,
+    "activeProjects": 4,
     "activeAgents": 6,
+    "stalled": 1,
+    "waiting": 2,
     "blockers": 3,
-    "completedToday": 4
+    "completedToday": 1,
+    "overdueItems": 2
   }
 }
