@@ -23,7 +23,7 @@ jobs:
       - name: Checkout main MABS repo
         uses: actions/checkout@v4
         with:
-          repository: bokjohn/clawd
+          repository: bokjohn/clawd-business-system
           path: mabs-repo
           token: ${{ secrets.GITHUB_TOKEN }}
       
