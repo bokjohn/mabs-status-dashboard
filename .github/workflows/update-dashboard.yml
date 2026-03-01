@@ -3,7 +3,7 @@ name: Update Dashboard Data
 on:
   schedule:
     # Run every 30 minutes
-    - cron: '0 * * * *'
+    - cron: '*/30 * * * *'
   workflow_dispatch: # Allow manual trigger
 
 jobs:
@@ -19,7 +19,7 @@ jobs:
       - name: Checkout main MABS repo
         uses: actions/checkout@v4
         with:
-          repository: bokjohn/clawd
+          repository: bokjohn/clawd-business-system
           path: mabs-repo
           token: ${{ secrets.GITHUB_TOKEN }}
       
