@@ -6,6 +6,10 @@ on:
     - cron: '*/30 * * * *'
   workflow_dispatch: # Allow manual trigger
 
+
+permissions:
+  contents: write
+
 jobs:
   update:
     runs-on: ubuntu-latest
@@ -19,7 +23,7 @@ jobs:
       - name: Checkout main MABS repo
         uses: actions/checkout@v4
         with:
-          repository: bokjohn/clawd-business-system
+          repository: bokjohn/clawd
           path: mabs-repo
           token: ${{ secrets.GITHUB_TOKEN }}
       
